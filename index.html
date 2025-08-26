@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,3 +11,268 @@
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Router 404 Error Debugger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .route-item { transition: all 0.3s ease; }
+        .route-item:hover { transform: translateX(5px); }
+        .highlight { background-color: #fffdba; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-2">React Router 404 Error Debugger</h1>
+        <p class="text-center text-gray-600 mb-8">Identify and fix routing issues in your React application</p>
+        
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Common Causes of 404 Errors</h2>
+            <ul class="list-disc pl-5 space-y-2">
+                <li>Incorrect file paths in import statements</li>
+                <li>Missing components or pages</li>
+                <li>Incorrect route configuration</li>
+                <li>Server configuration issues</li>
+                <li>Case sensitivity in file paths</li>
+            </ul>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Column -->
+            <div class="md:w-1/2">
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                    <h2 class="text-xl font-semibold mb-4">Route Configuration Analysis</h2>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Select a route to check:</label>
+                        <select id="routeSelector" class="w-full p-2 border border-gray-300 rounded-md">
+                            <option value="">-- Select a route --</option>
+                            <option value="admin">Admin Routes</option>
+                            <option value="employee">Employee Routes</option>
+                            <option value="supplier">Supplier Routes</option>
+                            <option value="customer">Customer Routes</option>
+                            <option value="public">Public Routes</option>
+                        </select>
+                    </div>
+                    
+                    <div id="routeDetails" class="hidden">
+                        <h3 class="font-medium mb-2">Route Details:</h3>
+                        <div id="routeInfo" class="bg-gray-50 p-4 rounded-md mb-4"></div>
+                        
+                        <h3 class="font-medium mb-2">Potential Issues:</h3>
+                        <ul id="routeIssues" class="list-disc pl-5 space-y-1 text-red-600"></ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4">Quick Fixes</h2>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-blue-50 rounded-md">
+                            <h3 class="font-medium">Check Import Statements</h3>
+                            <p class="text-sm text-gray-600">Verify all imported files exist at the specified paths</p>
+                        </div>
+                        <div class="p-3 bg-blue-50 rounded-md">
+                            <h3 class="font-medium">Verify Component Existence</h3>
+                            <p class="text-sm text-gray-600">Ensure all referenced components are in the correct directories</p>
+                        </div>
+                        <div class="p-3 bg-blue-50 rounded-md">
+                            <h3 class="font-medium">Server Configuration</h3>
+                            <p class="text-sm text-gray-600">Configure your server to serve index.html for all routes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column -->
+            <div class="md:w-1/2">
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                    <h2 class="text-xl font-semibold mb-4">Route Visualization</h2>
+                    <div class="bg-gray-800 text-white p-4 rounded-md font-mono text-sm overflow-auto h-96">
+                        <div class="route-item">/
+                        <div class="route-item ml-4">/login</div>
+                        <div class="route-item ml-4">/register</div>
+                        <div class="route-item ml-4">/forgot-password</div>
+                        <div class="route-item ml-4">/reset-password/:token</div>
+                        <div class="route-item ml-4">/setup-admin</div>
+                        <div class="route-item">/profile</div>
+                        <div class="route-item ml-4 text-yellow-300">/admin
+                            <div class="route-item ml-4">/admin/dashboard</div>
+                            <div class="route-item ml-4">/employees</div>
+                            <div class="route-item ml-4">/employees/add</div>
+                            <div class="route-item ml-4">/employees/edit/:id</div>
+                            <div class="route-item ml-4">/employees/:id</div>
+                            <div class="route-item ml-4">/customers</div>
+                            <div class="route-item ml-4">/suppliers</div>
+                            <div class="route-item ml-4">/suppliers/add</div>
+                            <div class="route-item ml-4">/suppliers/:id</div>
+                            <div class="route-item ml-4">/suppliers/edit/:id</div>
+                            <div class="route-item ml-4">/orders</div>
+                            <div class="route-item ml-4">/orders/new</div>
+                            <div class="route-item ml-4">/orders/:orderId</div>
+                            <div class="route-item ml-4">/purchase-orders</div>
+                            <div class="route-item ml-4">/purchase-orders/new</div>
+                            <div class="route-item ml-4">/purchase-orders/:orderId</div>
+                            <div class="route-item ml-4">/inventory</div>
+                            <div class="route-item ml-4">/invoices</div>
+                            <div class="route-item ml-4">/payments</div>
+                            <div class="route-item ml-4">/settings</div>
+                        </div>
+                        <div class="route-item ml-4 text-green-300">/dashboard
+                            <div class="route-item ml-4">/profile/:id</div>
+                            <div class="route-item ml-4">/orders</div>
+                            <div class="route-item ml-4">/orders/new</div>
+                            <div class="route-item ml-4">/orders/:orderId</div>
+                            <div class="route-item ml-4">/employee/orders</div>
+                            <div class="route-item ml-4">/customers</div>
+                            <div class="route-item ml-4">/customers/add</div>
+                            <div class="route-item ml-4">/customers/edit/:id</div>
+                            <div class="route-item ml-4">/customers/:id</div>
+                            <div class="route-item ml-4">/schedule</div>
+                            <div class="route-item ml-4">/tasks</div>
+                            <div class="route-item ml-4">/reports</div>
+                            <div class="route-item ml-4">/messages</div>
+                        </div>
+                        <div class="route-item ml-4 text-blue-300">/customer
+                            <div class="route-item ml-4">/customer/dashboard</div>
+                            <div class="route-item ml-4">/customer/orders</div>
+                            <div class="route-item ml-4">/customer/orders/new</div>
+                            <div class="route-item ml-4">/customer/orders/:orderId</div>
+                            <div class="route-item ml-4">/customer/payment-history</div>
+                            <div class="route-item ml-4">/customer/support</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4">Server Configuration Tips</h2>
+                    <div class="bg-gray-100 p-4 rounded-md font-mono text-sm">
+                        <p>// For Express.js servers</p>
+                        <p>app.get('*', (req, res) => {</p>
+                        <p class="ml-4">res.sendFile(path.join(__dirname, 'build', 'index.html'));</p>
+                        <p>});</p>
+                        <p class="mt-3">// For Nginx</p>
+                        <p>location / {</p>
+                        <p class="ml-4">try_files $uri $uri/ /index.html;</p>
+                        <p>}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const routeSelector = document.getElementById('routeSelector');
+            const routeDetails = document.getElementById('routeDetails');
+            const routeInfo = document.getElementById('routeInfo');
+            const routeIssues = document.getElementById('routeIssues');
+            
+            const routeData = {
+                admin: {
+                    path: '/admin',
+                    component: 'AdminRoute -> DashboardLayout',
+                    pages: ['AdminDashboard', 'Employees', 'EmployeeForm', 'EmployeeProfile', 'Customers', 'Suppliers', 'SupplierForm', 'SupplierDetail', 'PurchaseOrders', 'CreatePurchaseOrder', 'PurchaseOrderDetail', 'Inventory', 'Invoices', 'Payments', 'AdminSettings'],
+                    commonIssues: [
+                        'Check if all admin pages exist in the pages directory',
+                        'Verify path consistency (some routes use "admin/" prefix, others don\'t)',
+                        'Ensure ProtectedRoute and AdminRoute components are properly implemented'
+                    ]
+                },
+                employee: {
+                    path: '/dashboard',
+                    component: 'EmployeeRoute -> DashboardLayout',
+                    pages: ['EmployeeDashboard', 'EmployeeProfile', 'EmployeeOrders', 'NewOrderPage', 'OrderDetailPage', 'ManageOrders', 'Customers', 'CustomerForm', 'CustomerDetails', 'Schedule', 'EmployeeTasks', 'EmployeeReports', 'EmployeeMessages'],
+                    commonIssues: [
+                        'Check if EmployeeTasks component exists in components directory',
+                        'Verify all employee pages exist in pages directory',
+                        'Note the inconsistent route paths (/dashboard vs /employee/orders)'
+                    ]
+                },
+                supplier: {
+                    path: '/dashboard (supplier)',
+                    component: 'SupplierRoute -> SupplierLayout',
+                    pages: ['SupplierDashboard', 'SupplierOrders', 'SupplierInventory', 'SupplierPayments', 'SupplierSettings'],
+                    commonIssues: [
+                        'Check if all supplier pages exist in pages directory',
+                        'Verify SupplierLayout component exists',
+                        'Ensure purchase order detail route is correctly configured'
+                    ]
+                },
+                customer: {
+                    path: '/customer',
+                    component: 'CustomerRoute -> CustomerLayout',
+                    pages: ['CustomerDashboard', 'CustomerOrders', 'CustomerNewOrder', 'OrderDetailPage', 'PaymentHistory', 'Support'],
+                    commonIssues: [
+                        'Check if CustomerLayout component exists',
+                        'Verify all customer pages exist in pages directory',
+                        'Note the inconsistent customer route patterns'
+                    ]
+                },
+                public: {
+                    path: 'Various',
+                    component: 'None (public routes)',
+                    pages: ['Home', 'Login', 'Register', 'ForgotPassword', 'ResetPassword', 'AdminRegistrationForm'],
+                    commonIssues: [
+                        'Check if AdminRegistrationForm component exists',
+                        'Verify all public pages exist in pages directory',
+                        'Ensure reset password token parameter is correctly handled'
+                    ]
+                }
+            };
+            
+            routeSelector.addEventListener('change', function() {
+                const selectedRoute = this.value;
+                
+                if (selectedRoute && routeData[selectedRoute]) {
+                    const data = routeData[selectedRoute];
+                    
+                    // Display route information
+                    routeInfo.innerHTML = `
+                        <p><strong>Base Path:</strong> ${data.path}</p>
+                        <p><strong>Wrapper Components:</strong> ${data.component}</p>
+                        <p><strong>Pages:</strong> ${data.pages.join(', ')}</p>
+                    `;
+                    
+                    // Display issues
+                    routeIssues.innerHTML = '';
+                    data.commonIssues.forEach(issue => {
+                        const li = document.createElement('li');
+                        li.textContent = issue;
+                        routeIssues.appendChild(li);
+                    });
+                    
+                    // Show the details section
+                    routeDetails.classList.remove('hidden');
+                    
+                    // Highlight the relevant routes in the visualization
+                    document.querySelectorAll('.route-item').forEach(item => {
+                        item.classList.remove('highlight');
+                        if (selectedRoute === 'admin' && item.textContent.includes('/admin')) {
+                            item.classList.add('highlight');
+                        } else if (selectedRoute === 'employee' && 
+                                  (item.textContent.includes('/dashboard') || 
+                                   item.textContent.includes('/employee/') ||
+                                   item.textContent.includes('/profile/'))) {
+                            item.classList.add('highlight');
+                        } else if (selectedRoute === 'customer' && item.textContent.includes('/customer/')) {
+                            item.classList.add('highlight');
+                        }
+                    });
+                } else {
+                    routeDetails.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+ -->
