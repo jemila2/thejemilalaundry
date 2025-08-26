@@ -1,5 +1,5 @@
 
-import { HashserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HashserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
