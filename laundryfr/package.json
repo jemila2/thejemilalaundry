@@ -10,8 +10,7 @@
     "preview": "vite preview"
   },
 
-  {
-  "homepage": "https://jemila2/thejemilalaundry.git
+  "homepage": "https://jemila2.github.io/thejemilalaundry",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
